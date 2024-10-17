@@ -1,0 +1,7 @@
+services:
+  app:
+    init: true
+    ports:
+      - "80:80"
+      - "443:443"
+    image: "${DOCKER_IMAGE_IDENTIFIER}"
