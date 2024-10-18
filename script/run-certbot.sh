@@ -1,5 +1,5 @@
 #!/bin/bash
-# Add the self-signed localhost SSL certificate to the trust store.
+# Run `certbot` on the container with a post-hook to fix permissions.
 set -euo pipefail
 IFS=$'\n\t'
 

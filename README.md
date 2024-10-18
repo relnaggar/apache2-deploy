@@ -22,8 +22,8 @@ On subsequent runs, you can optionally omit the `DOCKER_IMAGE_IDENTIFIER` argume
 You can now run certbot to get a certificate from Let's Encrypt:
 
 ```bash
-script/setup-certbot.sh
-script/certbot.sh \[optional arguments to certbot\]
+script/set-up-certbot.sh # only need to run once
+script/run-certbot.sh [optional arguments to certbot]
 ```
 
 # Debugging
@@ -32,6 +32,12 @@ Get a shell inside the running container:
 
 ```bash
 script/ssh-into-production-server.sh
+```
+
+Run a single command inside the running container:
+
+```bash
+script/ssh-into-production-server.sh your-command
 ```
 
 # Stop the production server

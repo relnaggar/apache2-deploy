@@ -43,8 +43,8 @@ main() {
   log "Production docker image set to: ${DOCKER_IMAGE_IDENTIFIER}"
 
   # remember the image identifier for next time
-  echo "export DOCKER_IMAGE_IDENTIFIER=${DOCKER_IMAGE_IDENTIFIER}" >> .env
-
+  set_env_value DOCKER_IMAGE_IDENTIFIER "${DOCKER_IMAGE_IDENTIFIER}"
+  
   # export for docker swarm configuration in the docker-compose file
   export DOCKER_IMAGE_IDENTIFIER 
 

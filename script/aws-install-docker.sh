@@ -1,4 +1,5 @@
 #!/bin/bash
+# Install Docker on an AWS EC2 instance, tested on Amazon Linux 2023
 
 # install Docker
 sudo yum update -y
