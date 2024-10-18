@@ -7,13 +7,13 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && \
   pwd)"
 readonly SCRIPT_DIR
 . "${SCRIPT_DIR}/lib/utils.sh"
+. "${SCRIPT_DIR}/lib/common.sh"
 
 main() {
   # start the container
   logfun script/run-production-server.sh
 
-  local CONTAINER_ID=$(docker ps --filter "name=prod_app" --format "{{.ID}}" \
-    | head -n 1)
+  local CONTAINER_ID=$(get_container_id)
 
   # get the snakeoil SSL certificate
   logfun docker cp "${CONTAINER_ID}:/etc/ssl/certs/ssl-cert-snakeoil.pem" temp.pem

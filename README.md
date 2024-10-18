@@ -17,6 +17,14 @@ Replace `DOCKER_IMAGE_IDENTIFIER` with the identifier of the image you want to d
 
 On subsequent runs, you can omit the `DOCKER_IMAGE_IDENTIFIER` argument.
 
+# Debugging
+
+Get a shell inside the running container:
+
+```bash
+script/ssh-into-production-server.sh
+```
+
 # Stop the production server
 
 ```bash

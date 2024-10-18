@@ -50,7 +50,7 @@ main() {
   # remember the image identifier for next time
   echo "export DOCKER_IMAGE_IDENTIFIER=${DOCKER_IMAGE_IDENTIFIER}" > .env
 
-  # export for docker swarm
+  # export for docker swarm configuration in the docker-compose file
   export DOCKER_IMAGE_IDENTIFIER 
 
   # pull the image
