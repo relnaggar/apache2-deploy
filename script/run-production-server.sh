@@ -12,11 +12,6 @@ usage() {
   echo "usage: ${SCRIPT_NAME} [DOCKER_IMAGE_IDENTIFIER]"
 }
 
-# Function to get the value of a variable from the .env file
-get_env_value() {
-  grep "^export $1=" .env | cut -d '=' -f2
-}
-
 parse_args() {
   # optional arguments
   DOCKER_IMAGE_IDENTIFIER="${1:-}"
@@ -38,7 +33,7 @@ parse_args() {
       usage
       exit 1
     fi
-  fi
+  fi  
 }
 
 main() {
@@ -48,7 +43,7 @@ main() {
   log "Production docker image set to: ${DOCKER_IMAGE_IDENTIFIER}"
 
   # remember the image identifier for next time
-  echo "export DOCKER_IMAGE_IDENTIFIER=${DOCKER_IMAGE_IDENTIFIER}" > .env
+  echo "export DOCKER_IMAGE_IDENTIFIER=${DOCKER_IMAGE_IDENTIFIER}" >> .env
 
   # export for docker swarm configuration in the docker-compose file
   export DOCKER_IMAGE_IDENTIFIER 
@@ -63,8 +58,11 @@ main() {
     logfun docker swarm init
   fi
 
-  # deploy the stack
-  logfun docker stack deploy -c docker-compose.prod.yml prod
+  if [[ -z "$(get_env_value USE_CERTBOT)" ]]; then
+    logfun docker stack deploy -c docker-compose.prod.yml prod
+  else
+    logfun docker stack deploy -c docker-compose.prod.yml -c docker-compose.certbot.yml prod
+  fi
 }
 
 if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then

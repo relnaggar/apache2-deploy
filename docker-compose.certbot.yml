@@ -1,0 +1,5 @@
+services:
+  app:
+    volumes:
+      - ./.ssl/apache-sites-available:/etc/apache2/sites-available
+      - ./.ssl/letsencrypt:/etc/letsencrypt

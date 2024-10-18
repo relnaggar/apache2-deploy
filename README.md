@@ -15,7 +15,16 @@ script/run-production-server.sh DOCKER_IMAGE_IDENTIFIER
 ```
 Replace `DOCKER_IMAGE_IDENTIFIER` with the identifier of the image you want to deploy in the format `dockerhub_username/image_name:image_tag`. For example, `johndoe/myapp:latest`.
 
-On subsequent runs, you can omit the `DOCKER_IMAGE_IDENTIFIER` argument.
+On subsequent runs, you can optionally omit the `DOCKER_IMAGE_IDENTIFIER` argument.
+
+## Step 3 (optional)
+
+You can now run certbot to get a certificate from Let's Encrypt:
+
+```bash
+script/setup-certbot.sh
+script/certbot.sh \[optional arguments to certbot\]
+```
 
 # Debugging
 
