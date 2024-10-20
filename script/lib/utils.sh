@@ -72,3 +72,18 @@ set_env_value() {
     echo "export $1=$2" > .env
   fi
 }
+
+unset_env_value() {
+  if [[ -f .env ]]; then
+    if [[ -n "$(get_env_value $1)" ]]; then
+      local sed_cmd="s|^export $1=.*||"
+      if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS (BSD sed)
+        logfun sed -i "" "${sed_cmd}" .env
+      else
+        # Linux (GNU sed)
+        logfun sed -i "${sed_cmd}" .env
+      fi
+    fi
+  fi
+}
