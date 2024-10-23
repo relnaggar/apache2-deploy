@@ -63,6 +63,9 @@ main() {
   else
     logfun docker stack deploy -c docker-compose.prod.yml -c docker-compose.certbot.yml prod
   fi
+
+  logfun docker system prune -f
+  logfun docker image ls
 }
 
 if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
