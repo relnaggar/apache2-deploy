@@ -1,5 +1,5 @@
 #!/bin/bash
-# 
+# Run the production server using settings from .env.
 set -euo pipefail
 IFS=$'\n\t'
 
@@ -58,11 +58,16 @@ main() {
     logfun docker swarm init
   fi
 
-  if [[ -z "$(get_env_value USE_CERTBOT)" ]]; then
-    logfun docker stack deploy -c docker-compose.prod.yml prod
-  else
-    logfun docker stack deploy -c docker-compose.prod.yml -c docker-compose.certbot.yml prod
+  command="docker stack deploy -c docker-compose.prod.yml"
+  if [[ -n "$(get_env_value USE_CERTBOT)" ]]; then
+    command+=" -c docker-compose.certbot.yml"
   fi
+  if [[ -n "$(get_env_value USE_SECRETS)" ]]; then
+    command+=" -c docker-compose.secrets.yml"
+  fi
+  command+=" prod"
+  log "Running command: ${command}"
+  eval "${command}"
 
   logfun docker system prune -f
   logfun docker image ls
