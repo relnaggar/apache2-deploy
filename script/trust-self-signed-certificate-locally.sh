@@ -12,7 +12,8 @@ readonly SCRIPT_DIR
 
 main() {
   # get the snakeoil SSL certificate
-  logfun docker cp "$(get_container_id):/etc/ssl/certs/ssl-cert-snakeoil.pem" temp.pem
+  logfun docker cp "$(get_container_id):/etc/ssl/certs/ssl-cert-snakeoil.pem" \
+    temp.pem
 
   # add the self-signed localhost certificates to the trust store
   logfun trust_certificate_locally temp.pem

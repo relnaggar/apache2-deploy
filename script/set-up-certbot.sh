@@ -19,7 +19,8 @@ main() {
   fi
   if [[ ! -d ".ssl/apache-sites-available" ]]; then
     # copy apache sites-available files from production server
-    logfun docker cp "$(get_container_id):/etc/apache2/sites-available" .ssl/apache-sites-available
+    logfun docker cp "$(get_container_id):/etc/apache2/sites-available" \
+      .ssl/apache-sites-available
   fi
 
   # set certbot config env variable
