@@ -1,3 +1,4 @@
 .env
 .ssl/
 docker-compose.secrets.yml
+db*/
