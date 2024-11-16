@@ -5,3 +5,7 @@ services:
       - "80:80"
       - "443:443"
     image: "${DOCKER_IMAGE_IDENTIFIER}"
+    volumes:
+      - db:/var/dv
+volumes:
+  db:
