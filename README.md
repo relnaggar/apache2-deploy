@@ -62,3 +62,9 @@ Alternatively, you can manually apply the changes to the Apache configuration in
 ```bash
 docker stack rm prod
 ```
+
+# Renew expired certbot certificate
+
+```bash
+script/run-certbot.sh renew
+```
