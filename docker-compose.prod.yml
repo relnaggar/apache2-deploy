@@ -6,6 +6,6 @@ services:
       - "443:443"
     image: "${DOCKER_IMAGE_IDENTIFIER}"
     volumes:
-      - db:/var/dv
+      - db:/var/db
 volumes:
   db:
