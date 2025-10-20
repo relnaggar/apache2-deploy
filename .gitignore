@@ -2,3 +2,4 @@
 .ssl/
 docker-compose.secrets.yml
 db*/
+seeds/*.php*
